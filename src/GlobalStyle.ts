@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 // import BG from './images/purple-abstract.jpg';
 import BG from './images/curtains-2400.jpg';
-import BGSmall from './images/curtains-900.jpg';
+import BGSmall from './images/curtains-1200.jpg';
 
 const GlobalStyle = createGlobalStyle`
     html {
