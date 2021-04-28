@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import Button from '../../components/button';
 import { Card, CardContent } from '../../components/card';
-import Flex from '../../components/flex';
 import { ViewSliderDispatcher, dispatchAction } from '../../components/viewslider';
 import Wrapper from '../../components/wrapper';
 
@@ -11,7 +10,7 @@ import {
     ReducerActionType,
     QuizStage,
 } from '../../context/QuizContext';
-import { Score, ScoreText } from './styles';
+import { Score, ScoreText, QuizRecap as StyledQuizRecap, Attibution } from './styles';
 
 function QuizRecap() {
     const { questions, correctCount } = useContext(QuizContextConsumer);
@@ -21,26 +20,29 @@ function QuizRecap() {
     const handleClick = () => dispatch({ type: dispatchAction.Next, payload: 2 });
 
     return (
-        <>
-            <Flex justifyContent="center" alignItems="center">
-                <div>
-                    <Card>
-                        <CardContent>
-                            <ScoreText>You Scored</ScoreText>
+        <StyledQuizRecap>
+            <div>
+                <Card>
+                    <CardContent>
+                        <ScoreText>You Scored</ScoreText>
 
-                            <Score>
-                                {correctCount}/{questions.length}
-                            </Score>
-                        </CardContent>
-                    </Card>
-                    <Wrapper marginTop="0.75rem">
-                        <Button block variant="glass" onClick={handleClick}>
-                            Try Again
-                        </Button>
-                    </Wrapper>
-                </div>
-            </Flex>
-        </>
+                        <Score>
+                            {correctCount}/{questions.length}
+                        </Score>
+                    </CardContent>
+                </Card>
+                <Wrapper marginTop="0.75rem">
+                    <Button block variant="glass" onClick={handleClick}>
+                        Try Again
+                    </Button>
+                </Wrapper>
+            </div>
+            <Attibution>
+                <a href="http://www.freepik.com" target="_blank">
+                    Background by upklyak
+                </a>
+            </Attibution>
+        </StyledQuizRecap>
     );
 }
 
