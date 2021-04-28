@@ -10,4 +10,22 @@ const Score = styled.div`
     text-align: center;
 `;
 
-export { ScoreText, Score };
+const QuizRecap = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+const Attibution = styled.div`
+    position: fixed;
+    bottom: 0;
+    right: 0.5rem;
+
+    & > a {
+        color: white;
+        font-size: 0.75rem;
+        text-decoration: none;
+    }
+`;
+
+export { ScoreText, Score, QuizRecap, Attibution };
