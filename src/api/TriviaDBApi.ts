@@ -82,6 +82,8 @@ async function getQuestions(args: questionRequestArgs) {
 
     const responseJson: QuestionResponse = await response.json();
 
+    validateJsonResponse(responseJson);
+
     // combine and randomize all answers
     responseJson.results.forEach((q) => {
         q.answers = randomAnswers(q.incorrect_answers, q.correct_answer);
@@ -96,20 +98,31 @@ function randomAnswers(incorrectAnswers: string[], correctAnswer: string) {
     return answers.sort((a, b) => 0.5 - Math.random());
 }
 
+class APIValidationError extends Error {
+    constructor(message: string) {
+        super(message);
+        this.name = 'APIValidationError';
+    }
+}
+
 function validateJsonResponse(responseJson: QuestionResponse) {
     // Codes 2,3,4 should not occur, but adding here for info
     switch (responseJson.response_code) {
         case 1:
-            return 'There are not enough questions for your search. Please select fewer questions or try again with other options.';
+            throw new APIValidationError(
+                'There are not enough questions for your search. Please select fewer questions or try again with other options.'
+            );
         case 2:
-            return 'Invalid Parameter Provided';
+            throw new APIValidationError('Invalid Parameter Provided');
         case 3:
-            return 'Invalid Session Token';
+            throw new APIValidationError('Invalid Session Token');
         case 4:
-            return 'Session Token has been exhausted';
+            throw new APIValidationError(
+                'Session Token has been exhaustedSession Token has been exhausted'
+            );
         default:
-            return null;
+            break;
     }
 }
 
-export { getCategories, getQuestions };
+export { getCategories, getQuestions, APIValidationError };

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { getQuestions, QDifficulty, QType } from '../../api/TriviaDBApi';
+import { APIValidationError, getQuestions, QDifficulty, QType } from '../../api/TriviaDBApi';
 import {
     QuizContextConsumer,
     QuizContextDispatcher,
@@ -9,6 +9,7 @@ import { ViewSliderDispatcher, dispatchAction } from '../../components/viewslide
 import { Input, Label, FormGroup, FormValidationText } from '../../components/form';
 import Button from '../../components/button';
 import Alert from '../../components/alert';
+import Wrapper from '../../components/wrapper';
 
 interface FormFields {
     qcount: number;
@@ -78,7 +79,13 @@ function OptionsForm() {
                 dipatch({ type: ReducerActionType.SetQuestions, payload: r.results });
                 dispatchSlider({ type: dispatchAction.Next });
             } catch (error) {
-                setFormError('There was an issue getting the questions. Please try again later.');
+                if (error instanceof APIValidationError) {
+                    setFormError(error.message);
+                } else {
+                    setFormError(
+                        'There was an issue getting the questions. Please try again later.'
+                    );
+                }
             }
 
             setIsLoading(false);
@@ -140,7 +147,11 @@ function OptionsForm() {
                     Start Quiz
                 </Button>
             </form>
-            {formError && <Alert>{formError}</Alert>}
+            {formError && (
+                <Wrapper marginTop="1rem">
+                    <Alert>{formError}</Alert>
+                </Wrapper>
+            )}
         </>
     );
 }
