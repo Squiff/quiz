@@ -1,4 +1,4 @@
-import styled, { css, StyledComponent } from 'styled-components';
+import styled from 'styled-components';
 
 const Card = styled.div`
     border-radius: 5px;

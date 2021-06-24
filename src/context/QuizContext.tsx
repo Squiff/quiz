@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useState } from 'react';
+import React, { createContext, useReducer } from 'react';
 import { Question } from '../api/TriviaDBApi';
 
 /* ------------- TYPES --------- */
@@ -71,7 +71,7 @@ function selectAnswer(state: IQuizContext, payload: string): IQuizContext {
 }
 
 function nextQuestion(state: IQuizContext): IQuizContext {
-    const { quizStage, answeredCount, questions, currentQuestion } = state;
+    const { quizStage, currentQuestion } = state;
 
     if (quizStage !== QuizStage.reviewAnswer) return state;
 
@@ -85,14 +85,7 @@ function nextQuestion(state: IQuizContext): IQuizContext {
 }
 
 function submitAnswer(state: IQuizContext): IQuizContext {
-    const {
-        selectedAnswer,
-        currentQuestion,
-        questions,
-        correctCount,
-        answeredCount,
-        quizStage,
-    } = state;
+    const { selectedAnswer, currentQuestion, questions, correctCount, answeredCount } = state;
 
     if (!selectedAnswer) return state;
 

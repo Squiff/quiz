@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import { useRef } from 'react';
 import { Transition } from 'react-transition-group';
 import {
     ViewSliderContextProvider,
@@ -23,6 +24,7 @@ interface ViewTransitionProps {
 function ViewSlideTransition({ id, children }: ViewSlideTransitionProps) {
     const sliderState = useContext(ViewSliderContext);
     const dispatch = useContext(ViewSliderDispatcher);
+    const viewSlideRef = useRef<HTMLDivElement>(null);
 
     const animationDuration = 750;
 
@@ -41,6 +43,7 @@ function ViewSlideTransition({ id, children }: ViewSlideTransitionProps) {
             timeout={animationDuration}
             onEntering={() => dispatch({ type: dispatchAction.Running })}
             onEntered={() => dispatch({ type: dispatchAction.RunningComplete })}
+            nodeRef={viewSlideRef}
         >
             {(state) => {
                 return (
@@ -49,6 +52,7 @@ function ViewSlideTransition({ id, children }: ViewSlideTransitionProps) {
                         directionX={sliderState.direction}
                         animationDuration={animationDuration}
                         order={order}
+                        ref={viewSlideRef}
                     >
                         {children}
                     </StyledViewSlide>
@@ -65,7 +69,7 @@ function ViewSliderWrapped({ children }: ViewTransitionProps) {
 
     useEffect(() => {
         dispatch({ type: dispatchAction.SetTotal, payload: total });
-    }, [total]);
+    }, [total, dispatch]);
 
     // wrap each child
     const wrappedChildren = childArray.map((c, i) => (

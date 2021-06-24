@@ -1,9 +1,5 @@
 import { useContext } from 'react';
-import {
-    QuizAnswers as StyledQuizAnswers,
-    QuizAnswer as StyledQuizAnswer,
-    QuizAnswerStatus,
-} from './styles';
+import { QuizAnswer as StyledQuizAnswer, QuizAnswerStatus } from './styles';
 import {
     QuizContextDispatcher,
     QuizContextConsumer,
@@ -17,9 +13,8 @@ interface Props {
 }
 
 export default function QuizAnswers({ answer }: Props) {
-    const { quizStage, selectedAnswer, questions, currentQuestion } = useContext(
-        QuizContextConsumer
-    );
+    const { quizStage, selectedAnswer, questions, currentQuestion } =
+        useContext(QuizContextConsumer);
     const dispatch = useContext(QuizContextDispatcher);
 
     let status: QuizAnswerStatus | undefined;

@@ -1,5 +1,4 @@
 import { useContext } from 'react';
-import { QuizContextConsumer, QuizStage } from '../../context/QuizContext';
 import Quiz from './Quiz';
 import { ViewSliderDispatcher, dispatchAction } from '../../components/viewslider';
 import { Card, CardContent } from '../../components/card';
@@ -9,7 +8,6 @@ import Button from '../../components/button';
 
 function QuizCard() {
     const dispatch = useContext(ViewSliderDispatcher);
-    const { quizStage } = useContext(QuizContextConsumer);
 
     const prev = () => {
         dispatch({ type: dispatchAction.Prev });

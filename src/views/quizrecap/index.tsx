@@ -3,13 +3,7 @@ import Button from '../../components/button';
 import { Card, CardContent } from '../../components/card';
 import { ViewSliderDispatcher, dispatchAction } from '../../components/viewslider';
 import Wrapper from '../../components/wrapper';
-
-import {
-    QuizContextDispatcher,
-    QuizContextConsumer,
-    ReducerActionType,
-    QuizStage,
-} from '../../context/QuizContext';
+import { QuizContextConsumer } from '../../context/QuizContext';
 import { Score, ScoreText, QuizRecap as StyledQuizRecap, Attibution } from './styles';
 
 function QuizRecap() {
@@ -38,7 +32,7 @@ function QuizRecap() {
                 </Wrapper>
             </div>
             <Attibution>
-                <a href="http://www.freepik.com" target="_blank">
+                <a href="http://www.freepik.com" target="_blank" rel="noreferrer">
                     Background by upklyak
                 </a>
             </Attibution>

@@ -78,8 +78,6 @@ function OptionsForm() {
                 dipatch({ type: ReducerActionType.SetQuestions, payload: r.results });
                 dispatchSlider({ type: dispatchAction.Next });
             } catch (error) {
-                console.log('Error');
-
                 setFormError('There was an issue getting the questions. Please try again later.');
             }
 
@@ -138,7 +136,7 @@ function OptionsForm() {
                     </Input>
                 </FormGroup>
 
-                <Button loading={isLoading} block>
+                <Button isLoading={isLoading} block>
                     Start Quiz
                 </Button>
             </form>

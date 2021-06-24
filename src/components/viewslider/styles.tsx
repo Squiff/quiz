@@ -1,4 +1,4 @@
-import { Transition, TransitionStatus } from 'react-transition-group';
+import { TransitionStatus } from 'react-transition-group';
 import styled, { css, keyframes } from 'styled-components';
 
 /*---------- TYPES -----------*/
@@ -45,8 +45,6 @@ const StyledViewSlide = styled.div<StyledViewSlideProps>`
     & > * {
         flex: 0 0 100%;
     }
-
-    /* display: flex; */
 
     ${(p) => {
         switch (p.state) {

@@ -2,7 +2,7 @@ import styled, { css, keyframes } from 'styled-components';
 
 interface Props {
     variant?: 'glass';
-    loading?: boolean;
+    isLoading?: boolean;
     block?: boolean;
 }
 
@@ -47,7 +47,7 @@ const Button = styled.button<Props>`
     }}
 
     ${(p) => {
-        if (p.loading) {
+        if (p.isLoading) {
             return css`
                 position: relative;
                 overflow: hidden;

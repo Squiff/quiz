@@ -30,8 +30,6 @@ export default function CategoryPicker() {
         fetchCategories();
     }, []);
 
-    console.log(categories);
-
     if (isLoading) return <Progress />;
     if (fetchError) return <Alert>{fetchError}</Alert>;
 
